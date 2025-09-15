@@ -1,0 +1,8 @@
+@media (min-width:997px) {
+.w-lg-80{
+    width: 80% !important;
+}
+.w-lg-50{
+    width: 60% !important;
+}
+}
