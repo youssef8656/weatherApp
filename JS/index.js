@@ -15,7 +15,7 @@ console.log(images[0]);
 function getWither(){
     return new Promise(function(resolve, reject){
         var myRequest=new XMLHttpRequest();
-        myRequest.open('get','http://api.weatherapi.com/v1/forecast.json?key=cf7cd70e33ae4c57ac6133625251409&q=cairo&days=3');
+        myRequest.open('get','https://api.weatherapi.com/v1/forecast.json?key=cf7cd70e33ae4c57ac6133625251409&q=cairo&days=3');
         myRequest.send();
         myRequest.addEventListener('load',function(){
             withers=JSON.parse(myRequest.response)
@@ -44,7 +44,7 @@ getWither();
 
 function search(that){
     return new Promise(function(resolve, reject){
-        var url='http://api.weatherapi.com/v1/forecast.json?key=cf7cd70e33ae4c57ac6133625251409&q='+that.value+'&days=3'
+        var url='https://api.weatherapi.com/v1/forecast.json?key=cf7cd70e33ae4c57ac6133625251409&q='+that.value+'&days=3'
         var myRequest=new XMLHttpRequest();
         myRequest.open('get',url);
         myRequest.send();
