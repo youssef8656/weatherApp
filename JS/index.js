@@ -8,10 +8,7 @@ var images=document.getElementsByClassName('image')
 
 var withers=[];
 var day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-// var dayName = days[date.getDay()];
-console.log(images[0]);
-
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 function getWither(){
     return new Promise(function(resolve, reject){
         var myRequest=new XMLHttpRequest();
@@ -26,7 +23,7 @@ function getWither(){
                 degrees[i].innerHTML=withers.forecast.forecastday[i].day.maxtemp_c
                 sun[i].innerHTML=withers.forecast.forecastday[i].day.condition.text
                 city.innerHTML=withers.location.name
-                currentDate.innerHTML=withers.forecast.forecastday[i].date
+                currentDate.innerHTML=withers.forecast.forecastday[i].date.slice(8,10)+' '+months[date.getMonth()];
                 images[i].src=withers.forecast.forecastday[i].day.condition.icon
                 if(i<2){
                     degreesMin[i].innerHTML=withers.forecast.forecastday[i+1].day.mintemp_c
@@ -50,7 +47,6 @@ function search(that){
         myRequest.send();
         myRequest.addEventListener('load',function(){
             withers=JSON.parse(myRequest.response)
-            console.log(withers);
             for(var i=0;i<3;i++){
                 var date = new Date(withers.forecast.forecastday[i].date);
                 days[i].innerHTML=day[date.getDay()]
@@ -60,7 +56,8 @@ function search(that){
                 }
                 sun[i].innerHTML=withers.forecast.forecastday[i].day.condition.text
                 city.innerHTML=withers.location.name
-                currentDate.innerHTML=withers.forecast.forecastday[i].date
+                currentDate.innerHTML=(withers.forecast.forecastday[i].date)
+                
                 images[i].src=withers.forecast.forecastday[i].day.condition.icon
             }
             resolve();
